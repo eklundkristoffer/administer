@@ -1,7 +1,10 @@
 ### Table of contents
 
-[Installation](#installation)</br>
-[Users](#users)
+* [Installation](#installation)</br>
+* [Users](#users)
+* [Commands](#commands)
+    * [Make Administer](#make-administer)
+    * [Delete Administer](#delete-administer)
 
 ###Installation 
 
@@ -21,11 +24,11 @@ or manually update your require block and run `composer update`
 
 ### Users
 
-#### Limits
+##### Limits
 * Only eloquent driver is supported.
 * Multiple guards is not supported.
 
-#### User model
+##### User model
 
 Your user model should also be extending Administers own user model:
 
@@ -38,4 +41,15 @@ class User extends Administer
 {
     //
 }
+```
+
+### Commands
+
+##### Make Administer
+```
+php artisan administer:admin:make {user_id}
+```
+##### Delete Administer
+```
+php artisan administer:admin:delete {user_id}
 ```
