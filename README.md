@@ -47,7 +47,7 @@ class User extends Administer
 ```
 
 #### Authentication
-If you want a administer to login using email for example, you will have to update `$username` property in your user model. Administer is using `username` and `password` columns on default.
+If you want a administer to login using email for example, you will have to update `$username` property in your user model. Administer is using `username` and `password` fields on default.
 
 ```php
 namespace App\User;
