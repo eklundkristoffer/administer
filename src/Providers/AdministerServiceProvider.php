@@ -2,6 +2,7 @@
 
 namespace Administer\Providers;
 
+use Administer\Commands;
 use Illuminate\Support\ServiceProvider;
 use Administer\Providers\RouteServiceProvider;
 
@@ -15,6 +16,12 @@ class AdministerServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->loadMigrationsFrom(__DIR__.'/../Resources/Migrations');
+
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+                Commands\CreateAdmin::class,
+            ]);
+        }
 
         $this->publishes([
             __DIR__.'/../Resources/Config/administer.php' => config_path('administer.php'),

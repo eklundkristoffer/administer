@@ -6,6 +6,9 @@ return [
     'table_prefix' => 'administer_',
 
     // Url prefix
-    'url_prefix' => 'administer'
+    'url_prefix' => 'administer',
+
+    // Users model
+    'user_model' => App\User::class,
 
 ];
