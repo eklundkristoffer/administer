@@ -7,7 +7,7 @@
     * [Authentication](#authentication)
 * [Commands](#commands)
     * [Make Administer](#make-administer)
-    * [Delete Administer](#delete-administer)
+    * [Remove Administer](#remove-administer)
 
 ###Installation 
 
@@ -78,7 +78,7 @@ class User extends Administer
 ```
 php artisan administer:admin:make {user_id}
 ```
-##### Delete Administer
+##### Remove Administer
 ```
-php artisan administer:admin:delete {user_id}
+php artisan administer:admin:remove {user_id}
 ```
