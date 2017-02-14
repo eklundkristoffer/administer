@@ -2,6 +2,9 @@
 
 * [Installation](#installation)</br>
 * [Users](#users)
+    * [Limits](#limits)
+    * [User Model](#user-model)
+    * [Authentication](#authentication)
 * [Commands](#commands)
     * [Make Administer](#make-administer)
     * [Delete Administer](#delete-administer)
@@ -40,6 +43,32 @@ use Administer\Models\User as Administer;
 class User extends Administer
 {
     //
+}
+```
+
+#### Authentication
+If you want a administer to login using email for example, you will have to update `$username` property in your user model. Administer is using `username` and `password` columns on default.
+
+```php
+namespace App\User;
+
+use Administer\Models\User as Administer;
+
+class User extends Administer
+{
+    /**
+    * Field to be used as username during authentication.
+    *
+    * @var string
+    */
+   protected $username = 'username';
+
+   /**
+    * Field to be used as password during authentication.
+    *
+    * @var string
+    */
+   protected $password = 'password';
 }
 ```
 
