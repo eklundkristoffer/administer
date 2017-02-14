@@ -1,8 +1,8 @@
 ### Table of contents
 
-[Installation](#Installation)
+[Installation](#installation)
 
-### Installation 
+###Installation 
 
 require the project using Composer:
 ```
