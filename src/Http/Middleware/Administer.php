@@ -17,7 +17,7 @@ class Administer
     public function handle($request, Closure $next, $method = null)
     {
         if (is_null($method) && ! $request->user()->administer) {
-            return abort(403);
+            return redirect('/');
         }
 
         if ($method == 'guest' && Auth::check()) {
@@ -25,6 +25,10 @@ class Administer
         }
 
         if ($method == 'auth' && ! Auth::check()) {
+            if (! $request->user()->administer) {
+                return redirect('/');
+            }
+
             return redirect(route('administer.login'));
         }
 
