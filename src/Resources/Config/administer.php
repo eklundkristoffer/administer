@@ -10,8 +10,9 @@ return [
 
     // Roles
     'roles' => [
-        'model.view' => 1,
-        'model.edit' => 2,
+        'administer' => 1,
+        'model.view' => 2,
+        'model.edit' => 4,
     ],
 
     // Models

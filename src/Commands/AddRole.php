@@ -12,7 +12,7 @@ class AddRole extends Command
      *
      * @var string
      */
-    protected $signature = 'administer:user:addrole {user_id} {role?*}';
+    protected $signature = 'administer:user:addrole {user_id} {role*}';
 
     /**
      * The console command description.

@@ -16,7 +16,7 @@ class Administer
      */
     public function handle($request, Closure $next, $method = null)
     {
-        if (is_null($method) && ! $request->user()->administer) {
+        if (is_null($method) && ! $request->user()->can('administer')) {
             return redirect('/');
         }
 
@@ -29,7 +29,7 @@ class Administer
                 return redirect(route('administer.login'));
             }
 
-            if (! $request->user()->administer) {
+            if (! $request->user()->can('administer')) {
                 return redirect('/');
             }
         }

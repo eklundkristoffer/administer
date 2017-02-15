@@ -15,7 +15,6 @@ class AddAdministerColumn extends Migration
     public function up()
     {
         Schema::table(Administer::user()->getTable(), function (Blueprint $table) {
-            $table->integer('administer')->default(0);
             $table->integer('administer_role')->default(0);
         });
     }
@@ -28,7 +27,7 @@ class AddAdministerColumn extends Migration
     public function down()
     {
         Schema::table(Administer::user()->getTable(), function (Blueprint $table) {
-            $table->dropColumn('administer');
+            $table->dropColumn('administer_role');
         });
     }
 }

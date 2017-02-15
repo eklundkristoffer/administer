@@ -12,7 +12,7 @@ class DeleteRole extends Command
      *
      * @var string
      */
-    protected $signature = 'administer:user:deleterole {user_id} {role?*}';
+    protected $signature = 'administer:user:deleterole {user_id} {role*}';
 
     /**
      * The console command description.
