@@ -24,8 +24,8 @@ class AdministerServiceProvider extends ServiceProvider
 
         if ($this->app->runningInConsole()) {
             $this->commands([
-                Commands\MakeAdmin::class,
-                Commands\RemoveAdmin::class,
+                Commands\AddRole::class,
+                Commands\DeleteRole::class,
             ]);
         }
 
