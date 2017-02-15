@@ -3,9 +3,9 @@
 namespace Administer\Providers;
 
 use Administer\Commands;
+use Administer\Providers;
 use Administer\Http\Middleware;
 use Illuminate\Support\ServiceProvider;
-use Administer\Providers\RouteServiceProvider;
 
 class AdministerServiceProvider extends ServiceProvider
 {
@@ -45,6 +45,7 @@ class AdministerServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->register(RouteServiceProvider::class);
+        $this->app->register(Providers\AuthServiceProvider::class);
+        $this->app->register(Providers\RouteServiceProvider::class);
     }
 }
