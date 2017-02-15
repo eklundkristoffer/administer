@@ -12,5 +12,9 @@ $router->prefix($prefix)->group(function ($router) {
 
     $router->middleware(['administer:auth'])->group(function ($router) {
         $router->get('/', 'DashboardController@index')->name('administer.dashboard');
+        $router->get('/models', 'Models\ModelsController@index')->name('administer.models');
+        $router->get('/model/{model}', 'Model\ModelController@index')->name('administer.model');
+        $router->get('/model/{model}/{record}', 'Model\RecordController@form')->name('administer.model.edit');
+        $router->post('/model/{model}/{record}', 'Model\RecordController@post');
     });
 });

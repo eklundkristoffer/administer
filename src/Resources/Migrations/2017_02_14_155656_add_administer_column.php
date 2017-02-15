@@ -1,5 +1,6 @@
 <?php
 
+use Facades\Administer\Administer;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -13,10 +14,9 @@ class AddAdministerColumn extends Migration
      */
     public function up()
     {
-        $table = app(config('administer.user_model', App\User::class))->getTable();
-
-        Schema::table($table, function (Blueprint $table) {
+        Schema::table(Administer::user()->getTable(), function (Blueprint $table) {
             $table->integer('administer')->default(0);
+            $table->integer('administer_role')->default(0);
         });
     }
 
@@ -27,9 +27,7 @@ class AddAdministerColumn extends Migration
      */
     public function down()
     {
-        $table = app(config('administer.user_model', App\User::class))->getTable();
-
-        Schema::table($table, function (Blueprint $table) {
+        Schema::table(Administer::user()->getTable(), function (Blueprint $table) {
             $table->dropColumn('administer');
         });
     }

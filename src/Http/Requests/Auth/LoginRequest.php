@@ -2,6 +2,7 @@
 
 namespace Administer\Http\Requests\Auth;
 
+use Facades\Administer\Administer;
 use Illuminate\Foundation\Http\FormRequest;
 
 class LoginRequest extends FormRequest
@@ -23,9 +24,11 @@ class LoginRequest extends FormRequest
      */
     public function rules()
     {
+        $user = Administer::user();
+
         return [
-            'username' => ['required'],
-            'password' => ['required'],
+            $user->administerUsername() => ['required'],
+            $user->administerPassword() => ['required'],
         ];
     }
 }

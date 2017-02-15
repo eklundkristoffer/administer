@@ -11,23 +11,23 @@ class User extends Authenticatable
      *
      * @var string
      */
-    protected $username = 'username';
+    protected $administerUsername = 'username';
 
     /**
      * Field to be used as password during authentication.
      *
      * @var string
      */
-    protected $password = 'password';
+    protected $administerPassword = 'password';
 
     /**
      * Get the field used as username during authentication.
      *
      * @return string
      */
-    public function getUsername()
+    public function administerUsername()
     {
-        return $this->username;
+        return $this->administerUsername;
     }
 
     /**
@@ -35,8 +35,8 @@ class User extends Authenticatable
      *
      * @return string
      */
-    public function getPassword()
+    public function administerPassword()
     {
-        return $this->password;
+        return $this->administerPassword;
     }
 }

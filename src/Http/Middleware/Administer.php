@@ -24,12 +24,14 @@ class Administer
             return redirect(route('administer.dashboard'));
         }
 
-        if ($method == 'auth' && ! Auth::check()) {
+        if ($method == 'auth') {
+            if (! Auth::check()) {
+                return redirect(route('administer.login'));
+            }
+
             if (! $request->user()->administer) {
                 return redirect('/');
             }
-
-            return redirect(route('administer.login'));
         }
 
         return $next($request);

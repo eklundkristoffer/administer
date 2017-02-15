@@ -37,7 +37,7 @@ class RemoveAdmin extends Command
      */
     public function handle()
     {
-        $user = app(config('administer.user_model', App\User::class))->findOrFail($this->argument('user'));
+        $user = Administer::user()->findOrFail($this->argument('user'));
         $user->administer = 0;
         $user->save();
 

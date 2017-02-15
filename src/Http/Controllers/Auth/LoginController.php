@@ -16,8 +16,8 @@ class LoginController extends Controller
      */
     public function form()
     {
-        $usernameField = Administer::user()->getUsername();
-        $passwordField = Administer::user()->getPassword();
+        $usernameField = Administer::user()->administerUsername();
+        $passwordField = Administer::user()->administerPassword();
 
         return view('administer::auth.login')->with(compact('usernameField', 'passwordField'));
     }
@@ -34,7 +34,7 @@ class LoginController extends Controller
 
         if (! Auth::attempt($credentials)) {
             return back()->withErrors([
-                'username' => trans('administer::auth.login.wrong.credentials')
+                Administer::user()->administerUsername() => trans('administer::auth.login.wrong.credentials')
             ]);
         }
 
