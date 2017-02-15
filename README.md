@@ -8,8 +8,8 @@
 * [Models](#models)
     * [Editable Models](#editable-models)
 * [Commands](#commands)
-    * [Make Administer](#make-administer)
-    * [Remove Administer](#remove-administer)
+    * [Add User Role](#add-user-role)
+    * [Delete User Role](#delete-user-role)
 
 ###Installation 
 
@@ -91,11 +91,11 @@ By adding a model to the `models` array in `config/administer.php` Administer wi
 
 ### Commands
 
-##### Make Administer
+##### Add User Role
 ```
-php artisan administer:admin:make {user_id}
+php artisan administer:user:addrole {user_id} {roles*}
 ```
-##### Remove Administer
+##### Delete User Role
 ```
-php artisan administer:admin:remove {user_id}
+php artisan administer:user:deleterole {user_id} {roles*}
 ```
