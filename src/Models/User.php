@@ -39,4 +39,21 @@ class User extends Authenticatable
     {
         return $this->administerPassword;
     }
+
+    /**
+     * Determine if user is authorized to given action.
+     *
+     * @param  string|array  $flags
+     * @return boolean
+     */
+    public function haveRole($action)
+    {
+        foreach ((array) $action as $flag) {
+            if (! ($this->administer_role & config('administer.roles', [])[$flag])) {
+                return false;
+            }
+        }
+
+        return true;
+    }
 }

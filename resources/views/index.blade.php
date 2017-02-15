@@ -2,6 +2,8 @@
 
 @section('content')
     <ul>
-        <li><a href="{{ route('administer.models') }}">Models</a></li>
+        @can('model.view')
+            <li><a href="{{ route('administer.models') }}">Models</a></li>
+        @endcan
     </ul>
 @endsection

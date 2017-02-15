@@ -15,7 +15,11 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         parent::boot();
-        
-        //
+            
+        foreach (config('administer.roles', []) as $key => $value) {
+            Gate::define($key, function ($user) use ($key) {
+                return $user->haveRole($key);
+            });
+        }
     }
 }

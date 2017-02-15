@@ -12,7 +12,10 @@
         @foreach($fields['present_fields'] as $field)
             <th>{{ $field }}</th>
         @endforeach
-        <th></th>
+
+        @can('model.edit')
+            <th></th>
+        @endcan
 
         @foreach($model->get() as $record)
             <tr>
@@ -20,7 +23,9 @@
                     <td>{{ $record->{$field} }}</td>
                 @endforeach
 
-                <td><a href="{{ route('administer.model.edit', [$namespace, $record->getKey()]) }}">Edit</a></td>
+                @can('model.edit')
+                    <td><a href="{{ route('administer.model.edit', [$namespace, $record->getKey()]) }}">Edit</a></td>
+                @endcan
             </tr>
         @endforeach
     </table>
