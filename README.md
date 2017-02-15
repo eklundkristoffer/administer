@@ -5,6 +5,8 @@
     * [Limits](#limits)
     * [User Model](#user-model)
     * [Authentication](#authentication)
+* [Models](#models)
+    * [Editable Models](#editable-models)
 * [Commands](#commands)
     * [Make Administer](#make-administer)
     * [Remove Administer](#remove-administer)
@@ -70,6 +72,21 @@ class User extends Administer
     */
    protected $password = 'password';
 }
+```
+
+### Models
+
+##### Editable Models
+
+By adding a model to the `models` array in `config/administer.php` Administer will then automatically let you edit the model records from the web. You can with ease define which fields that can be edited, and which fields that should be shown in the presentation list. 
+
+```php
+'models' => [
+    App\User::class => [
+        'present_fields' => ['username', 'email'],
+        'editable_fields' => ['username', 'email']
+    ]
+],
 ```
 
 ### Commands
