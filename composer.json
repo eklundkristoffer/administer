@@ -1,5 +1,6 @@
 {
-    "name": "administer/administer",
+    "name": "eklundkristoffer/administer",
+    "license": "MIT",
     "authors": [
         {
             "name": "Kristoffer Eklund",
