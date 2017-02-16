@@ -2,6 +2,7 @@
 
 namespace Administer\Providers;
 
+use Administer\Models\Role;
 use Illuminate\Support\Facades\Gate;
 use App\Providers\AuthServiceProvider as ServiceProvider;
 
@@ -15,11 +16,11 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         parent::boot();
-            
-        foreach (config('administer.roles', []) as $key => $value) {
-            Gate::define($key, function ($user) use ($key) {
-                return $user->haveRole($key);
+
+        Role::get()->each(function ($role, $key) {
+            Gate::define($role->slug, function ($user) use ($role) {
+                return $user->haveRole($role->slug);
             });
-        }
+        });
     }
 }

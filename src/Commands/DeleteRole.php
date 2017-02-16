@@ -2,6 +2,7 @@
 
 namespace Administer\Commands;
 
+use Administer\Models\Role;
 use Illuminate\Console\Command;
 use Facades\Administer\Administer;
 
@@ -39,21 +40,16 @@ class DeleteRole extends Command
     public function handle()
     {
         $user = Administer::user()->findOrFail($this->argument('user_id'));
-        $role = $this->argument('role');
-        $roles = collect(config('administer.roles', []));
 
-        if (in_array('superuser', $role)) {
-            $user->administer_role = 0;
-        } else {
-            foreach ($role as $r) {
-                if (! $user->can($r)) {
-                    continue;
-                }
+        $deleteroles = $this->argument('role');
+        $roles = Role::get();
 
-                $user->administer_role = $user->administer_role - $roles->get($r);
-            }
-        }
+        $filtered = $roles->filter(function ($role, $key) use ($deleteroles, $user) {
+            return (! $user->can($role->slug)) ? null : in_array($role->slug, $deleteroles);
+        });
 
+        $sum = ($superuser = in_array('superuser', $deleteroles)) ? 0 : $filtered->pluck('value')->sum();
+        $user->administer_role = ($superuser) ? $sum : $user->administer_role - $sum;
         $user->save();
 
         return $this->info('User role have been updated');

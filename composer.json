@@ -6,7 +6,9 @@
             "email": "kristoffereklund1@gmail.com"
         }
     ],
-    "require": {},
+    "require": {
+        "eklundkristoffer/seedster": "~1.0"
+    },
     "autoload": {
         "psr-4": {
             "Administer\\": "src/"

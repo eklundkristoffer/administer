@@ -2,6 +2,7 @@
 
 namespace Administer\Models;
 
+use Administer\Models\Role;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
@@ -48,8 +49,10 @@ class User extends Authenticatable
      */
     public function haveRole($action)
     {
+        $roles = Role::get();
+
         foreach ((array) $action as $flag) {
-            if (! ($this->administer_role & config('administer.roles', [])[$flag])) {
+            if (! ($this->administer_role & $roles->where('slug', $flag)->first()->value)) {
                 return false;
             }
         }

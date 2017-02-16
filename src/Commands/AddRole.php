@@ -2,6 +2,7 @@
 
 namespace Administer\Commands;
 
+use Administer\Models\Role;
 use Illuminate\Console\Command;
 use Facades\Administer\Administer;
 
@@ -40,10 +41,14 @@ class AddRole extends Command
     {
         $user = Administer::user()->findOrFail($this->argument('user_id'));
 
-        $role = $this->argument('role');
-        $roles = collect(config('administer.roles', []));
-        $sum = ($superuser = in_array('superuser', $role)) ? $roles->sum() : $roles->only($role)->sum();
+        $addroles = $this->argument('role');
+        $roles = Role::get();
 
+        $filtered = $roles->filter(function ($role, $key) use ($addroles, $user) {
+            return ($user->can($role->slug)) ? null : in_array($role->slug, $addroles);
+        });
+
+        $sum = ($superuser = in_array('superuser', $addroles)) ? $roles->pluck('value')->sum() : $filtered->pluck('value')->sum();
         $user->administer_role = ($superuser) ? $sum : $user->administer_role + $sum;
         $user->save();
 

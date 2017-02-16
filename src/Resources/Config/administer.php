@@ -7,14 +7,7 @@ return [
 
     // Url prefix
     'url_prefix' => 'administer',
-
-    // Roles
-    'roles' => [
-        'administer' => 1,
-        'model.view' => 2,
-        'model.edit' => 4,
-    ],
-
+    
     // Models
     'models' => [
         App\User::class => [

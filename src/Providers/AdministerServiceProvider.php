@@ -5,6 +5,7 @@ namespace Administer\Providers;
 use Administer\Commands;
 use Administer\Providers;
 use Administer\Http\Middleware;
+use Seedster\SeedsterServiceProvider;
 use Illuminate\Support\ServiceProvider;
 
 class AdministerServiceProvider extends ServiceProvider
@@ -45,7 +46,12 @@ class AdministerServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->app['seed.handler']->register(
+            \Administer\Resources\Seeds\DatabaseSeeder::class
+        );
+
         $this->app->register(Providers\AuthServiceProvider::class);
         $this->app->register(Providers\RouteServiceProvider::class);
+        $this->app->register(SeedsterServiceProvider::class);
     }
 }
