@@ -35,7 +35,9 @@ class AdministerRolesSeeder extends Seeder
         ]);
 
         $roles->each(function ($role, $key) {
-            DB::table(config('administer.table_prefix').'roles')->insert($role);
+            if (! DB::table(config('administer.table_prefix', 'administer_').'roles')->where('slug', $role['slug'])->exists()) {
+                DB::table(config('administer.table_prefix').'roles')->insert($role);
+            }
         });
     }
 }
