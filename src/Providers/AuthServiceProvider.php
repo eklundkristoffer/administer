@@ -17,10 +17,12 @@ class AuthServiceProvider extends ServiceProvider
     {
         parent::boot();
 
-        Role::get()->each(function ($role, $key) {
-            Gate::define($role->slug, function ($user) use ($role) {
-                return $user->haveRole($role->slug);
+        if (! $this->app->runningInConsole()) {
+            Role::get()->each(function ($role, $key) {
+                Gate::define($role->slug, function ($user) use ($role) {
+                    return $user->haveRole($role->slug);
+                });
             });
-        });
+        }
     }
 }
