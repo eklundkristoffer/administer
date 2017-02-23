@@ -15,14 +15,14 @@
 
 require the project using Composer:
 ```
-composer require administer/administer --dev
+composer require eklundkristoffer/administer
 ```
 
 or manually update your require block and run `composer update`
 ```
 {
     "require": {
-        "administer/administer": "@dev"
+        "eklundkristoffer/administer": "~0.1"
     }
 }
 ```
